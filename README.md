@@ -7,7 +7,7 @@ Package license: GPL-3
 
 Feedstock license: BSD 3-Clause
 
-Summary: Create and integrate maps in your R workflow. This package allows various cartographic representations such as proportional symbols, choropleth, typology, flows or discontinuities maps. It also offers several features enhancing the graphic presentation of maps like cartographic palettes, layout elements (scale, north arrow, title...), labels, legends or access to some cartographic APIs. See Giraud and Lambert (2017) <doi:10.1007/978-3-319-57336-6_13>.
+Summary: Create and integrate maps in your R workflow. This package helps to design cartographic representations such as proportional symbols, choropleth, typology, flows or discontinuities maps. It also offers several features that improve the graphic presentation of maps, for instance, map palettes, layout elements (scale, north arrow, title...), labels or legends. See Giraud and Lambert (2017) <doi:10.1007/978-3-319-57336-6_13>.
 
 
 
@@ -127,7 +127,7 @@ A feedstock is made up of a conda recipe (the instructions on what and how to bu
 the package) and the necessary configurations for automatic building using freely
 available continuous integration services. Thanks to the awesome service provided by
 [CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/)
-and [TravisCI](https://travis-ci.org/) it is possible to build and upload installable
+and [TravisCI](https://travis-ci.com/) it is possible to build and upload installable
 packages to the [conda-forge](https://anaconda.org/conda-forge)
 [Anaconda-Cloud](https://anaconda.org/) channel for Linux, Windows and OSX respectively.
 

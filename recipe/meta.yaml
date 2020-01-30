@@ -1,4 +1,4 @@
-{% set version = "2.2.1" %}
+{% set version = '2.3.0' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,21 +10,21 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/cartography_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/cartography/cartography_{{ version }}.tar.gz
-  sha256: b78dd7932dfe8ef8fe164bfb480995d688153ee1f7f154cf83469232b0526f39
+  sha256: c0cff11e03230b635d626d87165127669ce5c988616adb2acaa298a55f9ef5f7
 
 build:
-  number: 0
   merge_build_host: True  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - {{ compiler('c') }}        # [not win]
-    - {{ compiler('cxx') }}      # [not win]
+    - {{ compiler('c') }}              # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
-    - {{ compiler('m2w64_cxx') }}        # [win]
+    - {{ compiler('cxx') }}            # [not win]
+    - {{ compiler('m2w64_cxx') }}      # [win]
     - {{posix}}filesystem        # [win]
     - {{posix}}make
     - {{posix}}sed               # [win]
@@ -34,20 +34,24 @@ requirements:
     - r-base
     - r-rcpp
     - r-classint
+    - r-curl
+    - r-png
     - r-raster
     - r-rgeos
-    - r-rosm
-    - r-sf >=0.5_4
+    - r-sf >=0.6_4
+    - r-slippymath
     - r-sp >=1.2_4
   run:
     - r-base
     - {{native}}gcc-libs         # [win]
     - r-rcpp
     - r-classint
+    - r-curl
+    - r-png
     - r-raster
     - r-rgeos
-    - r-rosm
-    - r-sf >=0.5_4
+    - r-sf >=0.6_4
+    - r-slippymath
     - r-sp >=1.2_4
 
 test:
@@ -58,13 +62,14 @@ test:
 about:
   home: https://github.com/riatelab/cartography/
   license: GPL-3
-  summary: Create and integrate maps in your R workflow. This package allows various cartographic
+  summary: Create and integrate maps in your R workflow. This package helps to design cartographic
     representations such as proportional symbols, choropleth, typology, flows or discontinuities
-    maps. It also offers several features enhancing the graphic presentation of maps
-    like cartographic palettes, layout elements (scale, north arrow, title...), labels,
-    legends or access to some cartographic APIs. See Giraud and Lambert (2017) <doi:10.1007/978-3-319-57336-6_13>.
+    maps. It also offers several features that improve the graphic presentation of maps,
+    for instance, map palettes, layout elements (scale, north arrow, title...), labels
+    or legends. See Giraud and Lambert (2017) <doi:10.1007/978-3-319-57336-6_13>.
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+  license_file:
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
 
 extra:
   recipe-maintainers:
@@ -73,24 +78,24 @@ extra:
 
 # Package: cartography
 # Title: Thematic Cartography
-# Version: 2.1.2
-# Authors@R: c( person("Timothee", "Giraud",  email = "timothee.giraud@cnrs.fr", role = c("cre","aut")), person("Nicolas", "Lambert",  email = "nicolas.lambert@cnrs.fr", role = "aut"),  person("Ian", "Fellows", role = "cph",  comment = "no overlap algorithm for labels, from wordcloud package"))
-# Description: Create and integrate maps in your R workflow. This package allows various cartographic representations such as proportional symbols, choropleth, typology, flows or discontinuities maps. It also offers several features enhancing the graphic presentation of maps like cartographic palettes, layout elements (scale, north arrow, title...), labels, legends or access to some cartographic APIs. See Giraud and Lambert (2017) <doi:10.1007/978-3-319-57336-6_13>.
+# Version: 2.3.0
+# Authors@R: c( person("Timothee", "Giraud", email = "timothee.giraud@cnrs.fr", role = c("cre","aut"), comment = c(ORCID = "0000-0002-1932-3323")), person("Nicolas", "Lambert", email = "nicolas.lambert@cnrs.fr", role = "aut"), person("Ian", "Fellows", role = "cph", comment = "no overlap algorithm for labels, from wordcloud package"))
+# Description: Create and integrate maps in your R workflow. This package helps to design cartographic representations such as proportional symbols, choropleth, typology, flows or discontinuities maps. It also offers several features that improve the graphic presentation of maps, for instance, map palettes, layout elements (scale, north arrow, title...), labels or legends. See Giraud and Lambert (2017) <doi:10.1007/978-3-319-57336-6_13>.
 # License: GPL-3
 # URL: https://github.com/riatelab/cartography/
 # BugReports: https://github.com/riatelab/cartography/issues/
 # LazyData: true
 # Depends: R (>= 3.3.0)
-# Imports: classInt, stats, graphics, methods, rosm, raster, Rcpp, rgeos, sp (>= 1.2-4), sf (>= 0.5-4)
-# Suggests: SpatialPosition, knitr, rmarkdown, rgdal
+# Imports: classInt, curl, graphics, methods, png, raster, Rcpp, rgeos, sf (>= 0.6-4), slippymath, sp (>= 1.2-4), stats
+# Suggests: SpatialPosition, knitr, rmarkdown, rgdal, tinytest
 # LinkingTo: Rcpp
 # VignetteBuilder: knitr
 # SystemRequirements: GDAL (>= 2.0.1), GEOS (>= 3.4.0), PROJ.4 (>= 4.8.0)
 # Encoding: UTF-8
-# RoxygenNote: 6.1.0
+# RoxygenNote: 7.0.2
 # NeedsCompilation: yes
-# Packaged: 2018-09-18 13:02:19 UTC; tim
-# Author: Timothee Giraud [cre, aut], Nicolas Lambert [aut], Ian Fellows [cph] (no overlap algorithm for labels, from wordcloud package)
+# Packaged: 2020-01-27 15:21:15 UTC; tim
+# Author: Timothee Giraud [cre, aut] (<https://orcid.org/0000-0002-1932-3323>), Nicolas Lambert [aut], Ian Fellows [cph] (no overlap algorithm for labels, from wordcloud package)
 # Maintainer: Timothee Giraud <timothee.giraud@cnrs.fr>
 # Repository: CRAN
-# Date/Publication: 2018-09-18 13:30:02 UTC
+# Date/Publication: 2020-01-28 09:40:16 UTC
