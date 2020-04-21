@@ -1,4 +1,4 @@
-{% set version = "2.4.0" %}
+{% set version = "2.4.1" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/cartography_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/cartography/cartography_{{ version }}.tar.gz
-  sha256: b9b69c34e4156f7334899149b2ca0bd6a12805176261043ed2eccdf19ad1dfcd
+  sha256: 3b91a269c1ed16b8d75cb841e13310463a21bcd07d62ed6a49316ebc3e09695d
 
 build:
   merge_build_host: true  # [win]
