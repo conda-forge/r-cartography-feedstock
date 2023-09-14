@@ -30,6 +30,7 @@ requirements:
     - {{ posix }}sed               # [win]
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
     - r-rcpp
@@ -37,10 +38,8 @@ requirements:
     - r-curl
     - r-png
     - r-raster
-    - r-rgeos
-    - r-sf >=0.6_4
-    - r-slippymath
-    - r-sp >=1.2_4
+    - r-sf
+    - r-sp
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
@@ -49,10 +48,8 @@ requirements:
     - r-curl
     - r-png
     - r-raster
-    - r-rgeos
-    - r-sf >=0.6_4
-    - r-slippymath
-    - r-sp >=1.2_4
+    - r-sf
+    - r-sp
 
 test:
   commands:
