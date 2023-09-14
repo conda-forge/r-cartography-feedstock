@@ -1,4 +1,4 @@
-{% set version = "3.1.3" %}
+{% set version = "3.1.4" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/cartography_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/cartography/cartography_{{ version }}.tar.gz
-  sha256: c6ca698c70c037b4a1a4a486b80363b7613b326a56910265cfcc2b23f59018ac
+  sha256: a54befba432ef27cd990afd41caa49a4649cc0403f8c3883bbf94ffa8e1d9ceb
 
 build:
   merge_build_host: true  # [win]
-  number: 1
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -30,6 +30,7 @@ requirements:
     - {{ posix }}sed               # [win]
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
     - r-rcpp
@@ -37,10 +38,8 @@ requirements:
     - r-curl
     - r-png
     - r-raster
-    - r-rgeos
-    - r-sf >=0.6_4
-    - r-slippymath
-    - r-sp >=1.2_4
+    - r-sf
+    - r-sp
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
@@ -49,10 +48,8 @@ requirements:
     - r-curl
     - r-png
     - r-raster
-    - r-rgeos
-    - r-sf >=0.6_4
-    - r-slippymath
-    - r-sp >=1.2_4
+    - r-sf
+    - r-sp
 
 test:
   commands:
